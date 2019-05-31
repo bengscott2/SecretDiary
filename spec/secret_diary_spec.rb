@@ -1,6 +1,5 @@
 require 'secret_diary'
 describe SecretDiary do
-  it { is_expected.to respond_to(:lock) }
 
   it 'throws an error when trying to add_entry while locked' do
     secret_diary = SecretDiary.new
