@@ -5,6 +5,7 @@ class SecretDiary
   end
 
   def lock
+    @locked = true
   end
 
   def unlock

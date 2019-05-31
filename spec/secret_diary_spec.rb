@@ -1,7 +1,6 @@
 require 'secret_diary'
 describe SecretDiary do
   it { is_expected.to respond_to(:lock) }
-  it { is_expected.to respond_to(:unlock) }
 
   it 'throws an error when trying to add_entry while locked' do
     secret_diary = SecretDiary.new
@@ -16,6 +15,13 @@ describe SecretDiary do
 
   it 'raises an error when trying to get_entries while locked' do
     secret_diary = SecretDiary.new
+    expect { secret_diary.get_entries }.to raise_error('Diary is locked')
+  end
+
+  it 'raise error trying to get_entries once locked and then locked' do
+    secret_diary = SecretDiary.new
+    secret_diary.unlock
+    secret_diary.lock
     expect { secret_diary.get_entries }.to raise_error('Diary is locked')
   end
 
