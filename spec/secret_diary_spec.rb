@@ -8,7 +8,7 @@ describe SecretDiary do
 
   it 'does not raise error after secret_diary.unlock' do
     secret_diary = SecretDiary.new
-    secret_diary.unlock
+    secret_diary.key.unlock
     expect { secret_diary.add_entry }.not_to raise_error
   end
 
@@ -19,8 +19,8 @@ describe SecretDiary do
 
   it 'raise error trying to get_entries once locked and then locked' do
     secret_diary = SecretDiary.new
-    secret_diary.unlock
-    secret_diary.lock
+    secret_diary.key.unlock
+    secret_diary.key.lock
     expect { secret_diary.get_entries }.to raise_error('Diary is locked')
   end
 

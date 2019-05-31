@@ -1,23 +1,18 @@
+require './lib/secret_diary_key.rb'
+
 class SecretDiary
+  attr_reader :key
 
   def initialize
-    @locked = true
-  end
-
-  def lock
-    @locked = true
-  end
-
-  def unlock
-    @locked = false
+    @key = SecretDiaryKey.new
   end
 
   def add_entry
-    raise "Diary is locked" if @locked
+    raise "Diary is locked" if @key.locked
   end
 
   def get_entries
-    raise "Diary is locked" if @locked
+    raise "Diary is locked" if @key.locked
   end
 
 end
